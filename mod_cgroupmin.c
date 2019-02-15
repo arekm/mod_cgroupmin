@@ -74,9 +74,9 @@ static int cgroup_procs_not_allowed(apr_pool_t *pool, server_rec *r, char *cgrou
     apr_file_close(cg);
     pid_cur = apr_atoi64(buf);
 
-    ap_log_error(APLOG_MARK, APLOG_DEBUG, errno, r, "Migration to cgroup: %s limit check: procs.cur (%lu) >= procs.max (%lu).", cgroup, pid_cur, pid_max);
+    ap_log_error(APLOG_MARK, APLOG_DEBUG, errno, r, "Migration to cgroup: %s limit check: pids.current (%lu) >= pids.max (%lu).", cgroup, pid_cur, pid_max);
     if (pid_cur >= pid_max) {
-        ap_log_error(APLOG_MARK, APLOG_ERR, errno, r, "Migration to cgroup: %s not allowed. procs.cur (%lu) >= procs.max (%lu). Limit reached.", cgroup, pid_cur, pid_max);
+        ap_log_error(APLOG_MARK, APLOG_ERR, errno, r, "Migration to cgroup: %s not allowed. pids.current (%lu) >= pids.max (%lu). Limit reached.", cgroup, pid_cur, pid_max);
         return CGROUP_MIGRATION_NOTALLOWED;
     }
 
